@@ -5,7 +5,7 @@
 Script de comprobación de entrega de práctica
 
 Para ejecutarlo, desde la shell:
- $ python check-p3.py login_github
+ $ pythonr check-p3.py login_laboratorio
 
 """
 
@@ -16,9 +16,9 @@ import sys
 
 if len(sys.argv) != 2:
     print()
-    sys.exit("Usage : $ python3 check-p3.py login_github")
+    sys.exit("Usage : $ python3 check-p3.py login_laboratorio")
 
-repo_git = "http://github.com/" + sys.argv[1] + "/ptavi-p3"
+repo_git = "https://gitlab.etsit.urjc.es/" + sys.argv[1] + "/ptavi-p3"
 
 python_files = [
     'smallsmilhandler.py',

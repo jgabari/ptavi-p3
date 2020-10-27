@@ -5,7 +5,7 @@
 Script de comprobación de entrega de práctica
 
 Para ejecutarlo, desde la shell:
- $ pythonr check-p3.py login_laboratorio
+ $ python3 check-p3.py login_laboratorio
 
 """
 

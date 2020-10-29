@@ -26,6 +26,7 @@ class SmallSMILHandler(ContentHandler):
         self.region = ""
         self.begin = ""
         self.dur = ""
+        self.content = []
 
 
     def startElement(self, name, attrs):
@@ -62,20 +63,20 @@ class SmallSMILHandler(ContentHandler):
         """
         if name == 'root-layout':
             # Guardar el contenido en una variable self.content
-            self.pregunta = ""
+            self.content.append({'name': name, 'width': self.width, 'height': self.height, 'background-color': self.backgroundcolor})
         if name == 'region':
-            self.respuesta = ""
+            self.content.append({'name': name, 'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right})
         if name == 'img':
-            self.pregunta = ""
+            self.content.append({'name': name, 'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur})
         if name == 'audio':
-            self.respuesta = ""
+            self.content.append({'name': name, 'src': self.src, 'begin': self.begin, 'dur': self.dur})
         if name == 'textstream':
-            self.respuesta = ""
+            self.content.append({'name': name, 'src': self.src, 'region': self.region})
 
 
-    def get_content(self):
+    def get_tags(self, name):
         """
-        Método que consigue el contenido
+        Método para tomar contenido
         """
 
 
@@ -85,6 +86,6 @@ if __name__ == "__main__":
     Programa principal
     """
     parser = make_parser()
-    cHandler = ChistesHandler()
-    parser.setContentHandler(cHandler)
-    parser.parse(open('chistes2.xml'))
+    sHandler = SmallSMILHandler()
+    parser.setContentHandler(sHandler)
+    parser.parse(open('karaoke.smil'))

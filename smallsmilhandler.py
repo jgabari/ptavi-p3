@@ -72,12 +72,16 @@ class SmallSMILHandler(ContentHandler):
             self.content.append({'name': name, 'src': self.src, 'begin': self.begin, 'dur': self.dur})
         if name == 'textstream':
             self.content.append({'name': name, 'src': self.src, 'region': self.region})
+        if name == 'smil':
+            self.get_tags(name)
 
 
     def get_tags(self, name):
         """
-        Método para tomar contenido
+        Método para mostrar el contenido
         """
+        for tag in self.content:
+            print(tag)
 
 
 
@@ -89,3 +93,4 @@ if __name__ == "__main__":
     sHandler = SmallSMILHandler()
     parser.setContentHandler(sHandler)
     parser.parse(open('karaoke.smil'))
+

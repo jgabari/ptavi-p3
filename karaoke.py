@@ -6,6 +6,8 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import smallsmilhandler
 import json
+import urllib.request
+
 
 if __name__ == "__main__":
     """
@@ -23,6 +25,14 @@ if __name__ == "__main__":
     jsonfile = jsonfile[0] + '.json'
     with open(jsonfile, 'w') as outfile:
         json.dump(sHandler.content, outfile, indent=4)
+
+    for tag in sHandler.content:
+        for key in tag:
+            if key == 'src':
+                if tag[key].split(':')[0] == 'http':
+                    local_filename = tag[key].split('/')[-1]
+                    local_filename, headers = urllib.request.urlretrieve(tag[key], local_filename)
+                    tag[key] = local_filename
 
     content = ""
     for tag in sHandler.content:

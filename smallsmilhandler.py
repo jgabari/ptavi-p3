@@ -73,6 +73,12 @@ class SmallSMILHandler(ContentHandler):
         if name == 'textstream':
             self.content.append({'name': name, 'src': self.src, 'region': self.region})
 
+    def get_tags(self):
+        """
+        Método que devuelve la variable self.content
+        """
+        return self.content
+
 
 if __name__ == "__main__":
     """

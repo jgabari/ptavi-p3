@@ -30,12 +30,12 @@ class KaraokeLocal(smallsmilhandler.SmallSMILHandler):
                 content_str += '\n'
         return content_str
 
-    def to_json(self, smilfile, jsonfile=""):
-        if jsonfile == "":
-            jsonfile = str(smilfile).split('.')
-            jsonfile = jsonfile[0] + '.json'
-        with open(jsonfile, 'w') as outfile:
-            json.dump(self.list, outfile, indent=4)
+    def to_json(self, smilfilename, jsonfilename=""):
+        if jsonfilename == "":
+            jsonfilename = smilfilename.split('.')
+            jsonfilename = jsonfilename[0] + '.json'
+        with open(jsonfilename, 'w') as jsonfile:
+            json.dump(self.list, jsonfile, indent=4)
 
     def do_local(self):
         for tag in self.list:
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         print("Usage: python3 karaoke.py file.smil")
     objeto = KaraokeLocal(smilfile)
     print(objeto)
-    objeto.to_json(smilfile)
+    objeto.to_json(sys.argv[1])
     objeto.do_local()
-    objeto.to_json(smilfile, 'local.json')
+    objeto.to_json(sys.argv[1], 'local.json')
     print(objeto)

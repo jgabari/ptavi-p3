@@ -42,9 +42,10 @@ class KaraokeLocal(smallsmilhandler.SmallSMILHandler):
             for key in tag:
                 if key == 'src':
                     if tag[key].split(':')[0] == 'http':
-                        local_filename = tag[key].split('/')[-1]
-                        local_filename, headers = urllib.request.urlretrieve(tag[key], local_filename)
-                        tag[key] = local_filename
+                        local = tag[key].split('/')[-1]
+                        url = tag[key]
+                        name, headers = urllib.request.urlretrieve(url, name)
+                        tag[key] = local
 
 
 if __name__ == "__main__":

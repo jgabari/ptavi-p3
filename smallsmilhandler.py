@@ -28,7 +28,6 @@ class SmallSMILHandler(ContentHandler):
         self.dur = ""
         self.content = []
 
-
     def startElement(self, name, attrs):
         """
         Método que se llama cuando se abre una etiqueta
@@ -63,15 +62,20 @@ class SmallSMILHandler(ContentHandler):
         """
         if name == 'root-layout':
             # Guardar el contenido en una variable self.content
-            self.content.append({'name': name, 'width': self.width, 'height': self.height, 'background-color': self.backgroundcolor})
+            self.content.append(name)
+            self.content.append({'width': self.width, 'height': self.height, 'background-color': self.backgroundcolor})
         if name == 'region':
-            self.content.append({'name': name, 'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right})
+            self.content.append(name)
+            self.content.append({'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right})
         if name == 'img':
-            self.content.append({'name': name, 'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur})
+            self.content.append(name)
+            self.content.append({'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur})
         if name == 'audio':
-            self.content.append({'name': name, 'src': self.src, 'begin': self.begin, 'dur': self.dur})
+            self.content.append(name)
+            self.content.append({'src': self.src, 'begin': self.begin, 'dur': self.dur})
         if name == 'textstream':
-            self.content.append({'name': name, 'src': self.src, 'region': self.region})
+            self.content.append(name)
+            self.content.append({'src': self.src, 'region': self.region})
 
     def get_tags(self):
         """

@@ -22,11 +22,12 @@ class KaraokeLocal(smallsmilhandler.SmallSMILHandler):
         aux_list = self.list
         content_str = ""
         for tag in aux_list:
-            content_str += tag['name'] + "\t"
-            del tag['name']
-            for att in tag:
-                content_str += att + '="' + tag[att] + '"\t'
-            content_str += '\n'
+            if aux_list.index(tag) % 2 == 0:
+                content_str += tag + "\t"
+            else:
+                for att in tag:
+                    content_str += att + '="' + tag[att] + '"\t'
+                content_str += '\n'
         return content_str
 
     def to_json(self, smilfile, jsonfile=""):

@@ -14,18 +14,6 @@ class SmallSMILHandler(ContentHandler):
         """
         Constructor. Inicializamos las variables
         """
-        self.width = ""
-        self.height = ""
-        self.backgroundcolor = ""
-        self.id = ""
-        self.top = ""
-        self.bottom = ""
-        self.left = ""
-        self.right = ""
-        self.src = ""
-        self.region = ""
-        self.begin = ""
-        self.dur = ""
         self.content = []
 
     def startElement(self, name, attrs):
